@@ -1,0 +1,8 @@
+{
+    "name": "penguin-gui",
+    "version": "0.0.1",
+    "title": "the penguin gui library",
+    "author": "penguinencounter",
+    "factorio_version": "1.1",
+    "dependencies": []
+}

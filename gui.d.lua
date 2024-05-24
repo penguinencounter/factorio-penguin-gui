@@ -1,0 +1,217 @@
+---@meta
+-- Type documentation only. Based on FMTK generated types.
+
+---LuaStyle with all fields optional.
+---@class ui.d.StyleOptional
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#badge_font)
+---
+---*Can only be used if this is TabStyle*
+---@field badge_font? string
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#badge_horizontal_spacing)
+---
+---*Can only be used if this is TabStyle*
+---@field badge_horizontal_spacing? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#bar_width)
+---
+---*Can only be used if this is LuaProgressBarStyle*
+---@field bar_width? uint
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#bottom_cell_padding)
+---
+---*Can only be used if this is LuaTableStyle*
+---@field bottom_cell_padding? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#bottom_margin)
+---@field bottom_margin? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#bottom_padding)
+---@field bottom_padding? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#cell_padding)
+---
+---*Can only be used if this is LuaTableStyle*
+---@field cell_padding? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#clicked_font_color)
+---
+---*Can only be used if this is LuaButtonStyle*
+---@field clicked_font_color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#clicked_vertical_offset)
+---
+---*Can only be used if this is LuaButtonStyle*
+---@field clicked_vertical_offset? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#color)
+---
+---*Can only be used if this is LuaProgressBarStyle*
+---@field color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#column_alignments)
+---@field column_alignments? LuaCustomTable<uint, Alignment>
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#default_badge_font_color)
+---
+---*Can only be used if this is TabStyle*
+---@field default_badge_font_color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#disabled_badge_font_color)
+---
+---*Can only be used if this is TabStyle*
+---@field disabled_badge_font_color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#disabled_font_color)
+---
+---*Can only be used if this is LuaButtonStyle or LuaTabStyle*
+---@field disabled_font_color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#draw_grayscale_picture)
+---
+---*Can only be used if this is LuaButtonStyle*
+---@field draw_grayscale_picture? boolean
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#extra_bottom_margin_when_activated)
+---
+---*Can only be used if this is ScrollPaneStyle*
+---@field extra_bottom_margin_when_activated? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#extra_bottom_padding_when_activated)
+---
+---*Can only be used if this is ScrollPaneStyle*
+---@field extra_bottom_padding_when_activated? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#extra_left_margin_when_activated)
+---
+---*Can only be used if this is ScrollPaneStyle*
+---@field extra_left_margin_when_activated? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#extra_left_padding_when_activated)
+---
+---*Can only be used if this is ScrollPaneStyle*
+---@field extra_left_padding_when_activated? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#extra_margin_when_activated)
+---@field extra_margin_when_activated? (int)|((int)[])
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#extra_padding_when_activated)
+---@field extra_padding_when_activated? (int)|((int)[])
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#extra_right_margin_when_activated)
+---
+---*Can only be used if this is ScrollPaneStyle*
+---@field extra_right_margin_when_activated? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#extra_right_padding_when_activated)
+---
+---*Can only be used if this is ScrollPaneStyle*
+---@field extra_right_padding_when_activated? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#extra_top_margin_when_activated)
+---
+---*Can only be used if this is ScrollPaneStyle*
+---@field extra_top_margin_when_activated? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#extra_top_padding_when_activated)
+---
+---*Can only be used if this is ScrollPaneStyle*
+---@field extra_top_padding_when_activated? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#font)
+---@field font? string
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#font_color)
+---@field font_color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#gui)
+---@field gui? LuaGui
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#height)
+---@field height? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#horizontal_align)
+---@field horizontal_align? ("left")|("center")|("right")
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#horizontal_spacing)
+---
+---*Can only be used if this is LuaTableStyle, LuaFlowStyle or LuaHorizontalFlowStyle*
+---@field horizontal_spacing? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#horizontally_squashable)
+---@field horizontally_squashable? boolean
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#horizontally_stretchable)
+---@field horizontally_stretchable? boolean
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#hovered_font_color)
+---
+---*Can only be used if this is LuaButtonStyle*
+---@field hovered_font_color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#left_cell_padding)
+---
+---*Can only be used if this is LuaTableStyle*
+---@field left_cell_padding? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#left_margin)
+---@field left_margin? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#left_padding)
+---@field left_padding? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#margin)
+---@field margin? (int)|((int)[])
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#maximal_height)
+---@field maximal_height? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#maximal_width)
+---@field maximal_width? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#minimal_height)
+---@field minimal_height? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#minimal_width)
+---@field minimal_width? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#name)
+---@field name? string
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#natural_height)
+---@field natural_height? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#natural_width)
+---@field natural_width? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#object_name)
+---@field object_name? string
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#padding)
+---@field padding? (int)|((int)[])
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#pie_progress_color)
+---
+---*Can only be used if this is LuaButtonStyle*
+---@field pie_progress_color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#rich_text_setting)
+---
+---*Can only be used if this is LuaLabelStyle, LuaTextBoxStyle or LuaTextFieldStyle*
+---@field rich_text_setting? defines.rich_text_setting
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#right_cell_padding)
+---
+---*Can only be used if this is LuaTableStyle*
+---@field right_cell_padding? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#right_margin)
+---@field right_margin? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#right_padding)
+---@field right_padding? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#selected_badge_font_color)
+---
+---*Can only be used if this is TabStyle*
+---@field selected_badge_font_color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#selected_clicked_font_color)
+---
+---*Can only be used if this is LuaButtonStyle*
+---@field selected_clicked_font_color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#selected_font_color)
+---
+---*Can only be used if this is LuaButtonStyle*
+---@field selected_font_color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#selected_hovered_font_color)
+---
+---*Can only be used if this is LuaButtonStyle*
+---@field selected_hovered_font_color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#single_line)
+---
+---*Can only be used if this is LabelStyle*
+---@field single_line? boolean
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#size)
+---@field size? (int)|((int)[])
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#stretch_image_to_widget_size)
+---
+---*Can only be used if this is ImageStyle*
+---@field stretch_image_to_widget_size? boolean
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#strikethrough_color)
+---
+---*Can only be used if this is LuaButtonStyle*
+---@field strikethrough_color? Color
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#top_cell_padding)
+---
+---*Can only be used if this is LuaTableStyle*
+---@field top_cell_padding? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#top_margin)
+---@field top_margin? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#top_padding)
+---@field top_padding? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#use_header_filler)
+---
+---*Can only be used if this is LuaFrameStyle*
+---@field use_header_filler? boolean
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#valid)
+---@field valid? boolean
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#vertical_align)
+---@field vertical_align? ("top")|("center")|("bottom")
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#vertical_spacing)
+---
+---*Can only be used if this is LuaTableStyle, LuaFlowStyle, LuaVerticalFlowStyle or LuaTabbedPaneStyle*
+---@field vertical_spacing? int
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#vertically_squashable)
+---@field vertically_squashable? boolean
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#vertically_stretchable)
+---@field vertically_stretchable? boolean
+---[View Documentation](https://lua-api.factorio.com/latest/classes/LuaStyle.html#width)
+---@field width? int
