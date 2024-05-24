@@ -1,3 +1,5 @@
+local assert_const = require 'runtime'.assert_const
+
 ---@class ui.types
 local export = {}
 
@@ -29,15 +31,19 @@ local export = {}
 ---@class ui.compiled.param : ui.base_type
 ---@field name string
 
+---@class ui.compiled._static : ui.base_type
+---@field id integer
+
 ---@alias ui.any_type ui.base_type | string | number | boolean | table | function
 
 ---@param name string
 local function mktypemeta(name)
+    assert_const()
     local function invalid(what_is_it)
         error("Illegal operation " .. what_is_it .. " on " .. name .. ".\n  hint: use a Custom Header for complex data manipulation\n    or adjust data passed to the template", 3)
     end
     ---@type metatable
-    return {
+    local ret = {
         _type = name,
         __concat = function(a, b)
             return setmetatable({
@@ -107,15 +113,17 @@ local function mktypemeta(name)
             invalid "compare"
         end
     }
+    script.register_metatable(name, ret)
+    return ret
 end
 
-export.stitch_type = mktypemeta("ui.ast.stitch")
 export.binop_type = mktypemeta("ui.ast.binop")
 export.unop_type = mktypemeta("ui.ast.unop")
 export.ref_type = mktypemeta("ui.ref")
 export.lazy_type = mktypemeta("ui.lazy")
 export.param_type = mktypemeta("ui.compiled.param")
 export.code_type = mktypemeta("ui.compiled.code")
+export.static_type = mktypemeta("ui.compiled._static")
 
 ---Represents an unfilled parameter to the function.
 ---
@@ -136,6 +144,10 @@ end
 ---@return ui.lazy_type
 function export.lazy(resolve)
     return setmetatable({resolve = resolve}, export.lazy_type)
+end
+
+function export._static(id)
+    return setmetatable({id = id}, export.static_type)
 end
 
 return export
