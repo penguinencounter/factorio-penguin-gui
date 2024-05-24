@@ -2,12 +2,14 @@
 local export = {}
 
 ---@class ui.base_type
----@field cat fun(self: ui.base_type, code: string): ui.ast.stitch
----@field precat fun(self: ui.base_type, code: string): ui.ast.stitch
-
----@class ui.ast.stitch : ui.base_type
----@field a any
----@field b any
+---@operator concat: ui.ast.binop
+---@operator add: ui.ast.binop
+---@operator sub: ui.ast.binop
+---@operator mul: ui.ast.binop
+---@operator div: ui.ast.binop
+---@operator mod: ui.ast.binop
+---@operator pow: ui.ast.binop
+---@operator unm: ui.ast.unop
 
 ---@class ui.ast.binop : ui.base_type
 ---@field left any
