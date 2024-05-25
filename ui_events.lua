@@ -1,6 +1,4 @@
 -- Stateless event handling based on flib's handler system.
-
-local all_events = require "utils.event"
 local is_runtime = false
 
 ---@type ui.Handler[]
@@ -85,12 +83,11 @@ do
         end
     end
     for name, evid in pairs(gui_events) do
-        all_events.add(evid, Dispatcher(name))
+        if not script.get_event_handler(evid) then
+            script.on_event(evid, Dispatcher(name))
+        end
     end
 end
-
-all_events.on_init(freeze)
-all_events.on_load(freeze)
 
 
 ---@class ui.ui_events_module

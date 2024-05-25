@@ -1,145 +1,9 @@
-local events       = require "ui.ui_events"
-local blocks       = {}
+local events = require "ui_events"
+local spec   = require 'spec'
+local types  = require 'types'
+local blocks = {}
 
----@class ui._SetNil
-
----sentinel value. represents clearing the value when passed to the style options.
----@type ui._SetNil
-local NIL          = {} --[[@as ui._SetNil]]
-
----@type metatable
-local ref_typeinfo = {
-    _type = "ui.ref"
-}
-
----@class ui.ref_type
----@field uname string
-
----Represents a LuaGuiElement in the same isolation context by unique name.
----
----Set {uname: string} to make an element available.
----@return ui.ref_type
-local function ref(uname)
-    return setmetatable({ uname = uname }, ref_typeinfo)
-end
-
----@type metatable
-local lazy_typeinfo = { _type = "ui.lazy" }
----@class ui.lazy_type
----@field fun fun(): any
-
----Represents a value that is not yet resolved.
----@param fun fun(): any
----@return ui.lazy_type
-local function lazy(fun)
-    events.desyncable()
-    return setmetatable({ fun = fun }, lazy_typeinfo)
-end
-
----@alias ui.labeler fun(name: string): string
-
----Create a labeler.
----@param base string | ui.labeler
-local function create_labeler(base)
-    ---@type string
-    local base_str
-    if type(base) == "function" then
-        base_str = base("")
-    else
-        base_str = base
-    end
-    return function(leaf)
-        return base_str .. "_" .. leaf
-    end
-end
-
----@class ui.IconSetPartial
----@field default SpritePath
----@field hovered? SpritePath
----@field clicked? SpritePath
-
----@class ui.IconSet
----@field default SpritePath
----@field hovered SpritePath
----@field clicked SpritePath
-
-
----Turn a partial IconSet into a completed IconSet.
----@param base ui.IconSetPartial | ui.IconSet
----@return ui.IconSet
-local function fill_icon_set(base)
-    ---@type ui.IconSet
-    return {
-        default = base.default,
-        hovered = base.hovered or base.default,
-        clicked = base.clicked or base.hovered or base.default
-    }
-end
-
----@alias ui.ElementSpec.events {[ui.EventName]: integer}
-
----@class ui.ElementSpec._base
----@field c? ui.ElementSpec[] List of child elements.
----@field s? ui.d.StyleOptional Style modifications. Any nil or unset fields will be ignored.
----@field x? {[string]: any} Additional properties to apply to the element.
----@field isolate? boolean Begin a new isolation context. This allows assigning new unique names, but previously assigned names will remain available (or overwritten.)
----@field uname? string This element's unique name in this isolation context.
----@field handlers? ui.ElementSpec.events
-local ElSpec = {}
-
----@param of ui.ElementSpec
----@return ui.ElementSpec
-function ElSpec.new(of)
-    of = of or {}
-    if of.c then
-        for i, v in ipairs(of.c) do
-            of.c[i] = ElSpec.new(v)
-        end
-    end
-    return setmetatable(of, ElSpec)
-end
-
----@param event_name ui.EventName
----@param handler integer|ui.Handler
----@param can_overwrite? boolean
-function ElSpec:on(event_name, handler, can_overwrite)
-    self.handlers = self.handlers or {}
-    if self.handlers[event_name] and not can_overwrite then
-        error("handler for " .. event_name .. " already exists")
-    end
-    if type(handler) == "number" then
-        self.handlers[event_name] = handler
-    elseif type(handler) == "function" then
-        self.handlers[event_name] = events.register(handler)
-    else
-        error("handler must be a function (if const) or a handler ID")
-    end
-    return self
-end
-
----@param el ui.ElementSpec
----@return ui.ElementSpec
-function ElSpec:add(el)
-    self.c = self.c or {}
-    self.c[#self.c + 1] = ElSpec.new(el)
-    return el
-end
-
----Update style information. Not named 'style' due to name conflicts with the `style` property to `LuaGuiElement.add`.
----@param self ui.ElementSpec
----@param style_opts ui.d.StyleOptional
----@return ui.ElementSpec
-function ElSpec:sty(style_opts)
-    for k, v in pairs(style_opts) do
-        self.s = self.s or {}
-        self.s[k] = v
-    end
-    return self
-end
-
-ElSpec.__index = ElSpec
-
----@alias ui.ElementSpec (LuaGuiElement.add_param|ui.ElementSpec._base)
+local ElSpec = spec.ElementSpec
 
 ---Label element.
 ---@param text string | ui.lazy_type
@@ -230,11 +94,11 @@ function blocks.WindowActionButton(name, icon, uname)
     ---@type ui.IconSet
     local iconset
     if type(icon) == "string" then
-        iconset = fill_icon_set {
+        iconset = spec.fill_icon_set {
             default = icon
         }
     else
-        iconset = fill_icon_set(icon)
+        iconset = spec.fill_icon_set(icon)
     end
     return ElSpec.new {
         type = "sprite-button",
@@ -257,7 +121,6 @@ end
 ---@param frame_actions ui.ElementSpec[]
 ---@return ui.ElementSpec
 function blocks.GenericWindow(name, window_label, frame_actions)
-    local local_ns = create_labeler(name)
     ---@type ui.ElementSpec[]
     local titlebar_children = {
         {
@@ -295,7 +158,7 @@ function blocks.GenericWindow(name, window_label, frame_actions)
         direction = "vertical",
         c = { {
             type = "flow",
-            name = local_ns("titlebar"),
+            name = "titlebar",
             direction = "horizontal",
             s = {
                 horizontally_stretchable = true,
@@ -303,7 +166,7 @@ function blocks.GenericWindow(name, window_label, frame_actions)
                 vertically_stretchable = false,
             },
             x = {
-                drag_target = ref "window"
+                drag_target = types.ref "window"
             },
             c = titlebar_children
         } },
@@ -325,11 +188,10 @@ end)
 ---@param window_label string
 ---@return ui.ElementSpec
 function blocks.ClosableWindow(name, window_label)
-    local local_ns = create_labeler(name)
     local base = blocks.GenericWindow(
         name, window_label, {
             blocks.WindowActionButton(
-                local_ns("close"),
+                "close",
                 {
                     default = "utility/close_white",
                     hovered = "utility/close_black"
@@ -341,6 +203,7 @@ function blocks.ClosableWindow(name, window_label)
     return base
 end
 
+-- FIXME: it's broken :)
 ---Resolve a value, including any references (ref(...)) or NIL sentinels.
 ---@param value any
 ---@param unames { [string]: LuaGuiElement } | nil
@@ -398,15 +261,6 @@ end
 
 local build, build_dry
 do
-    local non_ui_add_names = {
-        c = true,
-        x = true,
-        s = true,
-        uname = true,
-        isolate = true,
-        handlers = true
-    }
-
     ---@param component ui.ElementSpec
     ---@param parent LuaGuiElement
     ---@param _unames? {[string]: LuaGuiElement}
@@ -427,7 +281,7 @@ do
 
             local actualized = {}
             for k, v in pairs(c) do
-                if not non_ui_add_names[k] then
+                if not spec.non_ui_add_names[k] then
                     actualized[k] = resolve_value(v, nil)
                 end
             end
@@ -510,7 +364,7 @@ do
         local function build_and_decorate_tree(c, p)
             local actualized = {}
             for k, v in pairs(c) do
-                if not non_ui_add_names[k] then
+                if not spec.non_ui_add_names[k] then
                     actualized[k] = v
                 end
             end
@@ -544,9 +398,6 @@ end
 
 ---@class ui.components
 return {
-    NIL = NIL,
-    ref = ref,
-    lazy = lazy,
     blocks = blocks,
     build = build,
     build_dry = build_dry,

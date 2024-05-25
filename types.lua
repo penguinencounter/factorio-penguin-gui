@@ -31,6 +31,11 @@ local export = {}
 ---@class ui.compiled.param : ui.base_type
 ---@field name string
 
+---Mark an entire value as constant and not containing any special types.
+--- The entire value will be added to the resource bundle.
+---@class ui.compiled.const : ui.base_type
+---@field value any
+
 ---@class ui.compiled._static : ui.base_type
 ---@field id integer
 
@@ -40,7 +45,7 @@ local export = {}
 local function mktypemeta(name)
     assert_const()
     local function invalid(what_is_it)
-        error("Illegal operation " .. what_is_it .. " on " .. name .. ".\n  hint: use a Custom Header for complex data manipulation\n    or adjust data passed to the template", 3)
+        error("Illegal operation " .. what_is_it .. " on " .. name .. ".\n  hint: try adjusting the data passed to the template instead of manipulating it in the template definition", 3)
     end
     ---@type metatable
     local ret = {
@@ -123,7 +128,8 @@ export.ref_type = mktypemeta("ui.ref")
 export.lazy_type = mktypemeta("ui.lazy")
 export.param_type = mktypemeta("ui.compiled.param")
 export.code_type = mktypemeta("ui.compiled.code")
-export.static_type = mktypemeta("ui.compiled._static")
+export.const_type = mktypemeta("ui.compiled.const")
+export.internal_static_type = mktypemeta("ui.compiled._static")
 
 ---Represents an unfilled parameter to the function.
 ---
@@ -134,20 +140,30 @@ function export.param(name)
     return setmetatable({name = name}, export.param_type)
 end
 
+---Represents a LuaGuiElement in the same isolation context by unique name.
+---
+---Set {uname: string} to make an element available.
 ---@param name string
 ---@return ui.ref_type
 function export.ref(name)
     return setmetatable({name = name}, export.ref_type)
 end
 
+---Represents a value that is not yet resolved.
 ---@param resolve fun(): any
 ---@return ui.lazy_type
 function export.lazy(resolve)
     return setmetatable({resolve = resolve}, export.lazy_type)
 end
 
+---@param value any
+---@return ui.compiled.const
+function export.const(value)
+    return setmetatable({value = value}, export.const_type)
+end
+
 function export._static(id)
-    return setmetatable({id = id}, export.static_type)
+    return setmetatable({id = id}, export.internal_static_type)
 end
 
 return export
