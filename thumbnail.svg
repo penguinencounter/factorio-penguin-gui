@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="288"
+   height="288"
+   viewBox="0 0 76.199999 76.2"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="thumbnail.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#000000"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#0f0f0f"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="2.71529"
+     inkscape:cx="171.98899"
+     inkscape:cy="121.34984"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g57"
+     showguides="true">
+    <inkscape:grid
+       id="grid6"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="1.0583333"
+       spacingy="1.0583333"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="4"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+    <sodipodi:guide
+       position="25.4,79.804947"
+       orientation="-1,0"
+       id="guide25"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,134,229)" />
+    <sodipodi:guide
+       position="50.8,80.433333"
+       orientation="-1,0"
+       id="guide26"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,134,229)" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <linearGradient
+       id="swatch57"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop57" />
+    </linearGradient>
+    <linearGradient
+       id="swatch19"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop19" />
+    </linearGradient>
+    <linearGradient
+       id="swatch18"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop18" />
+    </linearGradient>
+    <linearGradient
+       id="swatch17"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop17" />
+    </linearGradient>
+    <linearGradient
+       id="swatch14"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop14" />
+    </linearGradient>
+    <linearGradient
+       id="swatch6"
+       inkscape:swatch="solid"
+       inkscape:label="heading2">
+      <stop
+         style="stop-color:#b2a8e2;stop-opacity:1;"
+         offset="0"
+         id="stop6" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#swatch6"
+       id="linearGradient19"
+       x1="8.3343744"
+       y1="9.0804996"
+       x2="53.391869"
+       y2="9.0804996"
+       gradientUnits="userSpaceOnUse" />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath35">
+      <g
+         inkscape:label="Clip"
+         id="use35">
+        <rect
+           style="fill:#b2a8e2;fill-opacity:0.1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           id="rect35"
+           width="25.4"
+           height="76.199997"
+           x="0"
+           y="0" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath37">
+      <use
+         x="0"
+         y="0"
+         xlink:href="#g36"
+         id="use37" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath40">
+      <use
+         x="0"
+         y="0"
+         xlink:href="#g39"
+         id="use40" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath57">
+      <use
+         x="0"
+         y="0"
+         xlink:href="#g56"
+         id="use57" />
+    </clipPath>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#swatch57"
+       id="linearGradient57"
+       x1="8.4666661"
+       y1="9.0804996"
+       x2="53.259576"
+       y2="9.0804996"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Blueprint"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <g
+       id="g37"
+       clip-path="url(#clipPath37)">
+      <g
+         inkscape:label="Clip"
+         id="g36">
+        <rect
+           style="display:inline;fill:none;fill-opacity:0.1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           id="rect37"
+           width="25.4"
+           height="76.199997"
+           x="0"
+           y="0" />
+      </g>
+      <text
+         xml:space="preserve"
+         style="display:none;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:normal;font-family:Tit;-inkscape-font-specification:Tit;text-decoration-color:#000000;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         x="7.9967661"
+         y="12.065"
+         id="text1"
+         inkscape:label="CANONICA"
+         sodipodi:insensitive="true"><tspan
+           sodipodi:role="line"
+           id="tspan1"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.7px;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+           x="0"
+           y="0">Settings</tspan></text>
+      <path
+         style="display:none;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         d="M 8.4666663,2.1166665 V 19.049999"
+         id="path18"
+         inkscape:label="top area" />
+      <path
+         style="display:inline;fill:#242324;fill-opacity:1;stroke:#b2a8e2;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         d="M 8.4666663,19.049999 H 81.491663 V 77.258327 H 8.4666663 Z"
+         id="path19" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:normal;font-family:Tit;-inkscape-font-specification:Tit;text-decoration-color:#000000;display:inline;fill:none;fill-opacity:1;stroke:url(#linearGradient19);stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;paint-order:markers fill stroke"
+         x="7.9967661"
+         y="12.065"
+         id="text19"
+         inkscape:label="Outline"><tspan
+           sodipodi:role="line"
+           id="tspan19"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.7px;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';fill:none;fill-opacity:1;stroke:url(#linearGradient19);stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
+           x="7.9967661"
+           y="12.065">Settings</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;display:inline;fill:#b2a8e2;fill-opacity:1;stroke:#a8c6e2;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         x="8.4666662"
+         y="17.991665"
+         id="text20"><tspan
+           sodipodi:role="line"
+           id="tspan20"
+           style="font-size:4.23333px;fill:#b2a8e2;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           x="8.4666662"
+           y="17.991665">VFrame</tspan></text>
+      <g
+         id="g24"
+         style="display:inline">
+        <path
+           style="fill:#b2a8e2;fill-opacity:0.2;stroke:#b2a8e2;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           d="M 10.583333,21.166665 V 47.624997 H 80.43333 V 21.166665 Z"
+           id="path20" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;fill:#b2a8e2;fill-opacity:1;stroke:#a8c6e2;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           x="11.641666"
+           y="25.399998"
+           id="text21"><tspan
+             sodipodi:role="line"
+             style="font-size:4.23333px;fill:#b2a8e2;fill-opacity:1;stroke:none;stroke-width:0.264583"
+             x="11.641666"
+             y="25.399998"
+             id="tspan23">Button</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;display:inline;fill:#e2c3a8;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           x="11.641666"
+           y="29.633331"
+           id="text46"><tspan
+             sodipodi:role="line"
+             id="tspan46"
+             style="font-size:4.23333px;fill:#e2c3a8;fill-opacity:1;stroke-width:0.264583"
+             x="11.641666"
+             y="29.633331">caption:</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;display:inline;fill:#e2c3a8;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           x="11.641666"
+           y="33.866665"
+           id="text47"><tspan
+             sodipodi:role="line"
+             id="tspan47"
+             style="font-style:italic;font-size:4.23333px;fill:#e2c3a8;fill-opacity:1;stroke-width:0.264583"
+             x="11.641666"
+             y="33.866665">param <tspan
+   style="font-style:normal;font-weight:bold;font-size:4.23333px"
+   id="tspan49">text</tspan></tspan></text>
+      </g>
+      <g
+         id="g25"
+         transform="translate(-1.5353232e-7,28.575)"
+         style="display:inline">
+        <path
+           style="fill:#b2a8e2;fill-opacity:0.2;stroke:#b2a8e2;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           d="M 10.583333,21.166665 V 47.624997 H 80.43333 V 21.166665 Z"
+           id="path24" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;fill:#b2a8e2;fill-opacity:1;stroke:#a8c6e2;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           x="11.514667"
+           y="25.306862"
+           id="text24"><tspan
+             sodipodi:role="line"
+             style="font-size:4.23333px;fill:#b2a8e2;fill-opacity:1;stroke:none;stroke-width:0.264583"
+             x="11.514667"
+             y="25.306862"
+             id="tspan24">Button</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;display:inline;fill:#e2c3a8;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           x="11.641666"
+           y="29.633329"
+           id="text46-5"><tspan
+             sodipodi:role="line"
+             id="tspan46-3"
+             style="font-size:4.23333px;fill:#e2c3a8;fill-opacity:1;stroke-width:0.264583"
+             x="11.641666"
+             y="29.633329">caption:</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;display:inline;fill:#e2c3a8;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           x="11.641666"
+           y="33.866661"
+           id="text47-4"><tspan
+             sodipodi:role="line"
+             id="tspan47-9"
+             style="font-style:italic;font-size:4.23333px;fill:#e2c3a8;fill-opacity:1;stroke-width:0.264583"
+             x="11.641666"
+             y="33.866661">param <tspan
+   style="font-style:normal;font-weight:bold;font-size:4.23333px"
+   id="tspan49-0">text</tspan></tspan></text>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;display:inline;fill:#b2a8e2;fill-opacity:1;stroke:#a8c6e2;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         x="8.4666662"
+         y="2.1166666"
+         id="text40"><tspan
+           sodipodi:role="line"
+           id="tspan40"
+           style="font-size:4.23333px;fill:#b2a8e2;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           x="8.4666662"
+           y="2.1166666">Label</tspan></text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Lua"
+     sodipodi:insensitive="true">
+    <g
+       id="g40"
+       clip-path="url(#clipPath40)">
+      <g
+         inkscape:label="Clip"
+         id="g39">
+        <rect
+           style="fill:none;fill-opacity:0.1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           id="rect40"
+           width="25.4"
+           height="76.199997"
+           x="25.4"
+           y="0" />
+      </g>
+      <path
+         style="display:inline;fill:#242324;fill-opacity:1;stroke:#9fbfdf;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         d="M 8.4666663,19.049999 H 81.491663 V 77.258327 H 8.4666663 Z"
+         id="path43" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:normal;font-family:Tit;-inkscape-font-specification:Tit;text-decoration-color:#000000;display:inline;fill:none;fill-opacity:1;stroke:#9fbfdf;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         x="7.9967661"
+         y="12.065"
+         id="text32"
+         inkscape:label="Outline"><tspan
+           sodipodi:role="line"
+           id="tspan32"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.7px;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';fill:none;fill-opacity:1;stroke:#9fbfdf;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
+           x="7.9967661"
+           y="12.065">Settings</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;display:inline;fill:#a8cfe2;fill-opacity:1;stroke:#a8c6e2;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         x="26.458332"
+         y="2.1166666"
+         id="text41"><tspan
+           sodipodi:role="line"
+           id="tspan41"
+           style="font-size:4.23333px;fill:#a8cfe2;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           x="26.458332"
+           y="2.1166666">label_1</tspan></text>
+      <g
+         id="g42"
+         style="display:inline">
+        <path
+           style="fill:#a8c6e2;fill-opacity:0.2;stroke:#9fbfdf;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           d="M 10.583333,21.166665 V 47.624997 H 80.43333 V 21.166665 Z"
+           id="path41" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;fill:#9fbfdf;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           x="26.458332"
+           y="25.399998"
+           id="text42"><tspan
+             sodipodi:role="line"
+             style="font-size:4.23333px;fill:#9fbfdf;fill-opacity:1;stroke:none;stroke-width:0.264583"
+             x="26.458332"
+             y="25.399998"
+             id="tspan42">button_5</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;display:inline;fill:#b1e2a8;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           x="11.641666"
+           y="33.866665"
+           id="text51"><tspan
+             sodipodi:role="line"
+             id="tspan51"
+             style="font-style:normal;font-size:4.23333px;fill:#b1e2a8;fill-opacity:1;stroke-width:0.264583"
+             x="11.641666"
+             y="33.866665">caption = options[<tspan
+   style="font-weight:bold;fill:#b1e2a8;fill-opacity:1"
+   id="tspan52">&quot;text&quot;</tspan>]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;display:inline;fill:#b1e2a8;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           x="11.641666"
+           y="38.099998"
+           id="text54"><tspan
+             sodipodi:role="line"
+             id="tspan54"
+             style="font-style:normal;font-size:4.23333px;fill:#b1e2a8;fill-opacity:1;stroke-width:0.264583"
+             x="11.641666"
+             y="38.099998">caption = <tspan
+   style="font-style:italic"
+   id="tspan56">'Graphics'</tspan></tspan></text>
+      </g>
+      <g
+         id="g43"
+         transform="translate(-1.5353232e-7,28.575)"
+         style="display:inline">
+        <path
+           style="fill:#a8c6e2;fill-opacity:0.2;stroke:#9fbfdf;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           d="M 10.583333,21.166665 V 47.624997 H 80.43333 V 21.166665 Z"
+           id="path42" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;fill:#9fbfdf;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           x="26.458332"
+           y="25.399998"
+           id="text43"><tspan
+             sodipodi:role="line"
+             style="font-size:4.23333px;fill:#9fbfdf;fill-opacity:1;stroke:none;stroke-width:0.264583"
+             x="26.458332"
+             y="25.399998"
+             id="tspan43">button_6</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;display:inline;fill:#b1e2a8;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           x="11.641666"
+           y="62.441662"
+           id="text51-0"
+           transform="translate(1.5353232e-7,-28.575)"><tspan
+             sodipodi:role="line"
+             id="tspan51-0"
+             style="font-style:normal;font-size:4.23333px;fill:#b1e2a8;fill-opacity:1;stroke-width:0.264583"
+             x="11.641666"
+             y="62.441662">caption = options[<tspan
+   style="font-weight:bold;fill:#b1e2a8;fill-opacity:1"
+   id="tspan52-3">&quot;text&quot;</tspan>]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;display:inline;fill:#b1e2a8;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           x="11.641666"
+           y="38.099995"
+           id="text54-4"><tspan
+             sodipodi:role="line"
+             id="tspan54-3"
+             style="font-style:normal;font-size:4.23333px;fill:#b1e2a8;fill-opacity:1;stroke-width:0.264583"
+             x="11.641666"
+             y="38.099995">caption = <tspan
+   style="font-style:italic"
+   id="tspan56-8">'Controls'</tspan></tspan></text>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;display:inline;fill:#9fbfdf;fill-opacity:1;stroke:#a8c6e2;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         x="26.458332"
+         y="17.991665"
+         id="text44"><tspan
+           sodipodi:role="line"
+           id="tspan44"
+           style="font-size:4.23333px;fill:#9fbfdf;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           x="26.458332"
+           y="17.991665">frame_4</tspan></text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Result">
+    <g
+       id="g57"
+       clip-path="url(#clipPath57)">
+      <g
+         inkscape:label="Clip"
+         id="g56">
+        <rect
+           style="fill:none;fill-opacity:0.2;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+           id="rect56"
+           width="25.399998"
+           height="76.199997"
+           x="50.799999"
+           y="0" />
+      </g>
+      <rect
+         style="fill:#313031;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect65"
+         width="25.4"
+         height="19.049999"
+         x="50.799999"
+         y="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:normal;font-family:Tit;-inkscape-font-specification:Tit;text-decoration-color:#000000;display:inline;fill:#ffe6c0;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         x="7.9967661"
+         y="12.065"
+         id="text57"
+         inkscape:label="CANONICA"><tspan
+           sodipodi:role="line"
+           id="tspan57"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.7px;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';fill:#ffe6c0;fill-opacity:1;stroke:none;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+           x="7.9967661"
+           y="12.065">Settings</tspan></text>
+      <rect
+         style="fill:#626162;fill-opacity:1;stroke:none;stroke-width:0.374177;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect57"
+         width="2.1166651"
+         height="12.699999"
+         x="57.149998"
+         y="2.1166668" />
+      <rect
+         style="fill:#626162;fill-opacity:1;stroke:none;stroke-width:0.374177;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect58"
+         width="2.1166651"
+         height="12.699999"
+         x="61.383331"
+         y="2.1166668" />
+      <rect
+         style="fill:#626162;fill-opacity:1;stroke:none;stroke-width:0.374177;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect59"
+         width="2.1166651"
+         height="12.699999"
+         x="65.616661"
+         y="2.1166668" />
+      <rect
+         style="fill:#626162;fill-opacity:1;stroke:none;stroke-width:0.374177;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect60"
+         width="2.1166651"
+         height="12.699999"
+         x="69.849991"
+         y="2.1166668" />
+      <rect
+         style="fill:#626162;fill-opacity:1;stroke:none;stroke-width:0.374177;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect61"
+         width="2.1166651"
+         height="12.699999"
+         x="74.083328"
+         y="2.1166668" />
+      <rect
+         style="fill:#242324;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect62"
+         width="26.45833"
+         height="58.208328"
+         x="50.799999"
+         y="19.049999" />
+      <path
+         style="display:inline;fill:#8e8e8e;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         d="M 10.583333,21.166665 V 47.624997 H 80.43333 V 21.166665 Z"
+         id="path62"
+         transform="translate(-1.5353232e-7,28.575)" />
+      <rect
+         style="fill:#b5b5b5;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect63"
+         width="25.399998"
+         height="1.058332"
+         x="50.799999"
+         y="49.741665" />
+      <path
+         style="display:inline;fill:#8e8e8e;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         d="M 10.583333,21.166666 V 47.624998 H 80.43333 V 21.166666 Z"
+         id="path63" />
+      <rect
+         style="fill:#b5b5b5;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect64"
+         width="25.399998"
+         height="1.058332"
+         x="50.799999"
+         y="21.166664" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;fill:#1c1c1c;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         x="76.199997"
+         y="39.158333"
+         id="text65"><tspan
+           sodipodi:role="line"
+           id="tspan65"
+           style="font-weight:bold;font-size:12.7px;text-align:center;text-anchor:middle;fill:#1c1c1c;fill-opacity:1;stroke-width:0.264583"
+           x="76.199997"
+           y="39.158333">Graphics</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:normal;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-decoration-color:#000000;fill:#1c1c1c;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+         x="76.199997"
+         y="67.73333"
+         id="text66"><tspan
+           sodipodi:role="line"
+           id="tspan66"
+           style="font-weight:bold;font-size:12.7px;text-align:center;text-anchor:middle;fill:#1c1c1c;fill-opacity:1;stroke-width:0.264583"
+           x="76.199997"
+           y="67.73333">Controls</tspan></text>
+    </g>
+  </g>
+</svg>

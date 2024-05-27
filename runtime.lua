@@ -36,9 +36,45 @@ end
 
 local function is_runtime() return at_runtime end
 
+local warnings = {}
+
+local function warn(message)
+    log("[WARNING] " .. message)
+    if settings.startup["penguin-gui-dev-mode"].value then
+        if game then
+            game.print("[WARNING] " .. message, {
+                sound_path = "__core__/sound/cannot-build.ogg",
+                game_state = false,
+                color = { r = 1, g = 0.8, b = 0 }
+            })
+        elseif not is_runtime() then
+            table.insert(warnings, message)
+        end
+    end
+end
+
+---@param evt EventData.on_player_created
+local function on_player_created(evt)
+    if #warnings > 0 then
+        local player = game.get_player(evt.player_index)
+        if not player then return end
+        player.print("Warnings while loading control.lua: (penguin gui developer mode)", { color = { r = 0.5, g = 1, b = 0 } })
+        for _, warning in ipairs(warnings) do
+            player.print("[warning] " .. warning, {
+                sound_path = "utility/cannot_build",
+                game_state = false,
+                color = { r = 1, g = 0.8, b = 0 }
+            })
+        end
+        warnings = {}
+    end
+end
+
 return {
     on_init = freeze,
     on_load = freeze,
+    on_player_created = on_player_created,
     assert_const = assert_const,
-    is_runtime = is_runtime
+    is_runtime = is_runtime,
+    warn = warn
 }

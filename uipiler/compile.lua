@@ -16,6 +16,7 @@ local runtime = require 'runtime'
 ---@param target string|number|boolean|function
 ---@return integer
 local function res_register(bundle, target)
+    if target == nil then error("nope", 2) end
     if bundle.rget[target] then return bundle.rget[target] end
     local i = #bundle.set + 1
     bundle.set[i] = target
@@ -72,9 +73,12 @@ translation_rules = {
     ---@param t ui.lazy_type
     ['ui.lazy'] = function(t, m, r)
         runtime.assert_const()
-        local builder_id = res_register(r, t.builder)
-        return translate_type(types._static(builder_id), m, r) .. '()'
+        local builder_id = res_register(r, t.resolve)
+        return translate_type(types._static(builder_id), m, r) .. '(options)'
     end,
+    ['ui.nil'] = function (t, m, r)
+        return "nil"
+    end
 }
 
 ---@param object ui.any_type
@@ -105,6 +109,11 @@ function translate_type(object, ctx, resources)
         if type(object) == "number" and object % 1 == 0 then
             return tostring(object)
         end
+        if type(object) == "string" and #object < 32 then
+            if not object:match("[^a-zA-Z0-9!@#$%%^&*()_+=|{}[%];:./,<>? -]") then
+                return '"' .. object .. '"'
+            end
+        end
         return translate_type(types._static(res_register(resources, object)), ctx, resources)
     end
     error('Don\'t know how to deal with ' .. type(object))
@@ -116,7 +125,7 @@ end
 ---@field _parent_varn? string
 ---@field log_debug? boolean
 ---@field child? boolean
----@field _local_context? string
+---@field _parent_context? string?
 
 ---@class ui.compile.options.concrete : ui.compile.options
 ---@field headers string
@@ -124,22 +133,24 @@ end
 ---@field _parent_varn string
 ---@field log_debug boolean
 ---@field child boolean
----@field _local_context string
+---@field _parent_context string?
 
 ---@type ui.compile.options.concrete
 local defaults = {
     headers = [[
-        ---@param parent LuaGuiElement
-        ---@param options {[string]: any}
-        ---@return LuaGuiElement
-        return function(parent, options)
-            local unames = {}
+---== Generated code :) ==---
+
+---@param parent LuaGuiElement
+---@param options {[string]: any}?
+---@return LuaGuiElement
+return function(parent, options)
+    options = options or {}
     ]],
     footers = [[
         end
     ]],
     _parent_varn = 'parent',
-    _local_context = 'ctx_0',
+    _parent_context = nil,
     log_debug = false,
     child = false,
 }
@@ -159,131 +170,55 @@ local function counter(tack)
     end
 end
 
----@diagnostic disable: missing-return
-
----Compile a ElemSpec to Lua code.
----@param target ui.ElementSpec
----@param options ui.compile.options?
----@param res ui.compile.static_res?
----@return fun(parent: LuaGuiElement, options: {[string]: any}): LuaGuiElement compiled compiled function. callable
----@return string source source code
-local function compile(target, options, res)
-    res = res or {
-        set = {},
-        rget = {}
-    }
-    local opts = setmetatable(options or {}, { __index = defaults }) --[[@as ui.compile.options.concrete]]
-
-    local direct = {}
-    for k, v in pairs(target) do
-        if not spec.non_ui_add_names[k] then
-            direct[k] = v
-        end
+local function clear_counter()
+    if runtime.is_runtime() then
+        global.element_counter = 0
+    else
+        nonruntime_element_count = 0
     end
-
-    -- Create element.
-    local output = ""
-    local context_name = opts._local_context
-    local need_new_ctx_header = not opts.child
-    if target.isolate then
-        context_name = 'ctx_' .. counter(true)
-        need_new_ctx_header = true
-    end
-    if need_new_ctx_header then
-        output = output .. 'local ' .. context_name .. ' = {}\n'
-    end
-    local generate_name = target.type:gsub("[^a-zA-Z]", "") .. '_' .. counter(true)
-
-    ---@type ui.compile.context
-    local ctx = {
-        stage = 1,
-        local_context = context_name
-    }
-    local create_elem = 'local ' ..
-        generate_name .. ' = ' .. opts._parent_varn .. '.add(' .. translate_type(direct, ctx, res) .. ')\n'
-    output = output .. create_elem
-
-    if target.uname then
-        output = output ..
-        context_name .. '[' .. translate_type(target.uname, ctx, res) .. '] = ' .. generate_name .. '\n'
-    end
-
-    local stage2_styles = {}
-    local stage2_props = {}
-
-    for k, v in pairs(target.s or {}) do
-        local value = translate_type(v, ctx, res)
-        if value == nil then
-            stage2_styles[k] = v
-        else
-            output = output .. generate_name .. '.style.' .. k .. ' = ' .. value .. '\n'
-        end
-    end
-    for k, v in pairs(target.x or {}) do
-        local value = translate_type(v, ctx, res)
-        if value == nil then
-            stage2_props[k] = v
-        else
-            output = output .. generate_name .. '.' .. k .. ' = ' .. value .. '\n'
-        end
-    end
-
-    ---@type ui.compile.options
-    local child_overlay = {
-        log_debug = false,
-        child = true,
-        _local_context = context_name
-    }
-
-    for k, v in pairs(target.c or {}) do
-        local _, child = compile(v, setmetatable(child_overlay, { __index = opts }), res)
-        output = output .. child .. '\n'
-    end
-
-    if table_size(stage2_styles) > 0 or table_size(stage2_props) > 0 then
-        output = output .. '--[[ Stage 2 initialization for ' .. generate_name .. ' ]]\n'
-        ctx.stage = 2
-        for k, v in pairs(stage2_styles) do
-            output = output .. generate_name .. '.style.' .. k .. ' = ' .. translate_type(v, ctx, res) .. '\n'
-        end
-        for k, v in pairs(stage2_props) do
-            output = output .. generate_name .. '.' .. k .. ' = ' .. translate_type(v, ctx, res) .. '\n'
-        end
-    end
-
-    if opts.log_debug then
-        log(output)
-        -- log(serpent.block(res))
-    end
-    return function() end, output
 end
 
 ---@param target ui.ElementSpec
 ---@param options ui.compile.options?
 ---@param res ui.compile.static_res?
+---@return fun(parent: LuaGuiElement, options: {[string]: any}?): LuaGuiElement compiled compiled function. callable
+---@return string source source code
 local function compile2(target, options, res)
     res = res or {
         set = {},
         rget = {}
     }
     local opts = setmetatable(options or {}, { __index = defaults }) --[[@as ui.compile.options.concrete]]
+    if not opts.child then
+        clear_counter()
+    end
     ---@type { [ui.ElementSpec]: string }
     local references = {}
     ---@type { spec: ui.ElementSpec, parent_varn: string }
     local sub_contexts = {}
     local output = ""
 
-    local context_name = opts._local_context
-    output = output .. "local " .. context_name .. " = {}\n--[[ stage 1 init for " .. context_name .. " ]]\n"
-
+    local context_name = "ctx_" .. counter(true)
     local ctx = { stage = 1, local_context = context_name }
+
+    output = output .. "--[[ stage 1 init for " .. context_name .. " ]]\n"
+    if opts._parent_context then
+        output = output .. "local " .. context_name .. " = setmetatable({}, { __index = " .. opts._parent_context .. " })\n"
+    else
+        output = output .. "local " .. context_name .. " = {}\n"
+    end
+
+    local first_child
 
     ---@param struct ui.ElementSpec
     ---@param parent_name string?
-    local function build_tree(struct, parent_name)
+    ---@param inner boolean?
+    local function build_tree(struct, parent_name, inner)
         parent_name = parent_name or opts._parent_varn
-        local generate_name = target.type:gsub("[^a-zA-Z]", "") .. '_' .. counter(true)
-        
+        local generate_name = struct.type:gsub("[^a-zA-Z]", "") .. '_' .. counter(true)
+        if not inner then first_child = generate_name end
+        references[struct] = generate_name
+
         local direct = {}
         for k, v in pairs(struct) do
             if not spec.non_ui_add_names[k] then
@@ -308,22 +243,64 @@ local function compile2(target, options, res)
                     parent_varn = generate_name
                 }
             else
-                build_tree(child, generate_name)
+                build_tree(child, generate_name, true)
             end
         end
     end
 
     build_tree(target)
 
+    ctx.stage = 2
+    output = output .. "--[[ stage 2 init for " .. context_name .. " ]]\n"
+
+    local function update_tree(struct)
+        local varname = references[struct]
+        if not varname then error("Internal construction error: no ref available?") end
+
+        for k, v in pairs(struct.s or {}) do
+            local result = translate_type(v, ctx, res)
+            if result == nil then error("Failed to translate " .. k) end
+            output = output .. varname .. ".style." .. k .. " = " .. result .. "\n"
+        end
+        for k, v in pairs(struct.x or {}) do
+            local result = translate_type(v, ctx, res)
+            if result == nil then error("Failed to translate " .. k) end
+            output = output .. varname .. "." .. k .. " = " .. result .. "\n"
+        end
+
+        for _, child in ipairs(struct.c or {}) do
+            if not child.isolate then
+                update_tree(child)
+            end
+        end
+    end
+
+    update_tree(target)
+
+    
+    for _, sub_context in ipairs(sub_contexts) do
+        local options_overlay = setmetatable({
+            _parent_context = context_name,
+            _parent_varn = sub_context.parent_varn,
+            log_debug = false,
+            child = true
+        }, {__index = opts})
+        local _, child_out = compile2(sub_context.spec, options_overlay, res)
+        output = output .. child_out .. "\n"
+    end
+
     if opts.log_debug then
         log(output)
         log(serpent.block(res.set))
     end
+
+    local return_cmd = "return " .. tostring(first_child) .. '\n'
+    local full_source = opts.headers .. output .. return_cmd .. opts.footers
+    local chunk = load(full_source, full_source, "t", { _RESOURCES = res.set })()
+    return chunk, output
 end
 
----@diagnostic enable: missing-return
 return {
-    compile = compile,
     translate_type = translate_type,
     compile2 = compile2
 }

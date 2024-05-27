@@ -1,4 +1,4 @@
-local events = require "ui_events"
+local events = require "events"
 local spec   = require 'spec'
 local types  = require 'types'
 local blocks = {}
@@ -119,8 +119,10 @@ end
 ---@param name string
 ---@param window_label string
 ---@param frame_actions ui.ElementSpec[]
+---@param movable boolean?
 ---@return ui.ElementSpec
-function blocks.GenericWindow(name, window_label, frame_actions)
+function blocks.GenericWindow(name, window_label, frame_actions, movable)
+    if movable == nil then movable = true end
     ---@type ui.ElementSpec[]
     local titlebar_children = {
         {
@@ -132,8 +134,10 @@ function blocks.GenericWindow(name, window_label, frame_actions)
                 vertically_stretchable = true,
                 horizontally_squashable = true
             }
-        },
-        {
+        }
+    }
+    if movable then
+        table.insert(titlebar_children, {
             type = "empty-widget",
             style = "draggable_space_header",
             ignored_by_interaction = true,
@@ -143,8 +147,19 @@ function blocks.GenericWindow(name, window_label, frame_actions)
                 height = 24,
                 natural_height = 24
             }
-        }
-    }
+        })
+    else
+        table.insert(titlebar_children, {
+            type = "empty-widget",
+            ignored_by_interaction = true,
+            s = {
+                horizontally_stretchable = true,
+                vertically_stretchable = true,
+                height = 24,
+                natural_height = 24
+            }
+        })
+    end
     for _, val in ipairs(frame_actions) do
         titlebar_children[#titlebar_children + 1] = val
     end
@@ -166,12 +181,12 @@ function blocks.GenericWindow(name, window_label, frame_actions)
                 vertically_stretchable = false,
             },
             x = {
-                drag_target = types.ref "window"
+                drag_target = movable and types.ref "window" or nil
             },
             c = titlebar_children
         } },
         x = {
-            auto_center = true
+            auto_center = movable or nil
         }
     }
 end
@@ -181,13 +196,14 @@ local close_button_handler = events.register(function(event)
     if parent and parent.valid then
         parent.destroy()
     end
-end)
+end, "close_button_handler")
 
 ---Window with a close button.
 ---@param name string
 ---@param window_label string
+---@param movable boolean?
 ---@return ui.ElementSpec
-function blocks.ClosableWindow(name, window_label)
+function blocks.ClosableWindow(name, window_label, movable)
     local base = blocks.GenericWindow(
         name, window_label, {
             blocks.WindowActionButton(
@@ -198,7 +214,7 @@ function blocks.ClosableWindow(name, window_label)
                 },
                 "close"
             ):on("click", close_button_handler)
-        }
+        }, movable
     )
     return base
 end
@@ -395,6 +411,21 @@ do
         build_and_decorate_tree(component, parent)
     end
 end
+
+blocks.pushx = {
+    type = "empty-widget",
+    s = {
+        horizontally_stretchable = true,
+        horizontally_squashable = true
+    }
+}
+blocks.pushy = {
+    type = "empty-widget",
+    s = {
+        vertically_stretchable = true,
+        vertically_squashable = true
+    }
+}
 
 ---@class ui.components
 return {

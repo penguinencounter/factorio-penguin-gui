@@ -26,7 +26,7 @@ local export = {}
 ---@field name string
 
 ---@class ui.lazy_type
----@field resolve fun(): any
+---@field resolve fun(options: table): any
 
 ---@class ui.compiled.param : ui.base_type
 ---@field name string
@@ -122,6 +122,7 @@ local function mktypemeta(name)
     return ret
 end
 
+export.actual_nil_type = mktypemeta("ui.nil")
 export.binop_type = mktypemeta("ui.ast.binop")
 export.unop_type = mktypemeta("ui.ast.unop")
 export.ref_type = mktypemeta("ui.ref")
@@ -130,6 +131,8 @@ export.param_type = mktypemeta("ui.compiled.param")
 export.code_type = mktypemeta("ui.compiled.code")
 export.const_type = mktypemeta("ui.compiled.const")
 export.internal_static_type = mktypemeta("ui.compiled._static")
+
+export.set_nil = setmetatable({}, export.actual_nil_type)
 
 ---Represents an unfilled parameter to the function.
 ---
@@ -150,7 +153,7 @@ function export.ref(name)
 end
 
 ---Represents a value that is not yet resolved.
----@param resolve fun(): any
+---@param resolve fun(options?: table): any
 ---@return ui.lazy_type
 function export.lazy(resolve)
     return setmetatable({resolve = resolve}, export.lazy_type)

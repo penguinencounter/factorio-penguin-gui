@@ -1,4 +1,4 @@
-local events = require 'ui_events'
+local events = require 'events'
 
 ---@class ui.IconSetPartial
 ---@field default SpritePath
@@ -24,7 +24,7 @@ local function fill_icon_set(base)
 end
 
 
----@alias ui.ElementSpec.events {[ui.EventName]: integer}
+---@alias ui.ElementSpec.events {[ui.EventName]: string}
 
 ---@class ui.ElementSpec._base
 ---@field c? ui.ElementSpec[] List of child elements.
@@ -48,17 +48,24 @@ function ElementSpec.new(of)
 end
 
 ---@param event_name ui.EventName
----@param handler integer|ui.Handler
+---@param handler string|ui.Handler
 ---@param can_overwrite? boolean
 function ElementSpec:on(event_name, handler, can_overwrite)
     self.handlers = self.handlers or {}
     if self.handlers[event_name] and not can_overwrite then
         error("handler for " .. event_name .. " already exists")
     end
-    if type(handler) == "number" then
+    if type(handler) == "string" then
         self.handlers[event_name] = handler
     elseif type(handler) == "function" then
-        self.handlers[event_name] = events.register(handler)
+        local name = event_name
+        if self.uname or self.name then
+            name = (self.uname or self.name) .. "_" .. name
+        end
+        if self.type then
+            name = self.type .. "_" .. name
+        end
+        self.handlers[event_name] = events.register(handler, name, "rename")
     else
         error("handler must be a function (if const) or a handler ID")
     end
