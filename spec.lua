@@ -56,6 +56,18 @@ function ElementSpec:add(el)
     return el
 end
 
+---Add multiple elements to the current element.
+---
+---**Note:** This function returns the current element, *not the added elements*.
+---@param els ui.ElementSpec[]
+---@return ui.ElementSpec
+function ElementSpec:adds(els)
+    for _, el in ipairs(els) do
+        self:add(el)
+    end
+    return self
+end
+
 ---Update style information. Not named 'style' due to name conflicts with the `style` property to `LuaGuiElement.add`.
 ---@param self ui.ElementSpec
 ---@param style_opts ui.d.StyleOptional
