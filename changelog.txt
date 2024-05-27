@@ -1,0 +1,17 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2024-05-27
+  Bugfixes:
+    - Made event handlers not crash if used outside of the library.
+  Features:
+    - Non-compiling render is now functional.
+    - All-in-one require target, `require '__penguin-gui__.pgui'`.
+---------------------------------------------------------------------------------------------------
+Version: 0.0.1
+Date: 2024-05-26
+  Features:
+    - Initial release.
+    - GUI specification types.
+    - Compiler.
+  Info:
+    - The non-compiling renderer is non-functional.

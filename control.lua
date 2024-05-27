@@ -1,11 +1,13 @@
-local runtime  = require 'runtime'
-local compiler = require 'uipiler.compile'
-local types    = require 'types'
-local events   = require 'events'
-local blocks   = require 'components'.blocks
-local spec     = require 'spec'
+local runtime   = require 'runtime'
+local compiler  = require 'compile'
+local types     = require 'types'
+local events    = require 'events'
+local blocks    = require 'components'.blocks
+local build     = require 'components'.build
+local auto_name = require 'components'.auto_name
+local spec      = require 'spec'
 
-local template = blocks.ClosableWindow("ui_cmp_debug", "Playground", false)
+local template  = blocks.ClosableWindow("ui_cmp_debug", "Playground", false)
 
 template:sty {
     width = types.lazy(function(opt)
@@ -179,7 +181,7 @@ local function update(event)
         header_style_runtime(func_out.header)
         header_style_runtime(res_out.header)
         func_out.textbox.text = "Error parsing input: " ..
-        (parser_error --[[@as string]] or "<unknown error parsing input>")
+            (parser_error --[[@as string]] or "<unknown error parsing input>")
         return
     end
 
@@ -211,7 +213,7 @@ local function update(event)
         header_style_runtime(func_out.header)
         header_style_runtime(res_out.header)
         func_out.textbox.text = "Error compiling input: " ..
-        (result2 --[[@as string]] or "<unknown error compiling input>")
+            (result2 --[[@as string]] or "<unknown error compiling input>")
         return
     end
     func_out.header.style = "subheader_frame"
@@ -268,8 +270,34 @@ remote.add_interface("penguingui", {
     end
 })
 
+local template2 = blocks.ClosableWindow("ui_cmp_debug2", "Example Window", true)
+template2:add {
+    type = "label",
+    caption = types.lazy(function(_)
+        return "For example, " .. game.tick
+    end),
+    s = {
+        padding = types.const(12)
+    },
+    tooltip = types.lazy(function(_) return '' .. game.tick end) .. " is the current tick"
+}
+auto_name(template2)
+
+local function test_live_render(player)
+    if player.gui.screen.ui_cmp_debug2 then
+        player.gui.screen.ui_cmp_debug2.destroy()
+    end
+    build(template2, player.gui.screen)
+end
+
 if settings.startup["penguin-gui-dev-mode"].value then
     commands.add_command("pgui-playground", "Open the Penguin GUI testing interface", open_testing_interface)
+    commands.add_command("pgui-test", "Test the live rendering of a GUI. Intentionally includes warnings.",
+        function(event)
+            local player = game.players[event.player_index]
+            if not player then return end
+            test_live_render(player)
+        end)
 end
 
 script.on_init(function()

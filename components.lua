@@ -1,9 +1,11 @@
-local events = require "events"
-local spec   = require 'spec'
-local types  = require 'types'
-local blocks = {}
+local events  = require "events"
+local spec    = require 'spec'
+local types   = require 'types'
+local runtime = require 'runtime'
+local utils   = require 'helpers'
+local blocks  = {}
 
-local ElSpec = spec.ElementSpec
+local ElSpec  = spec.ElementSpec
 
 ---Label element.
 ---@param text string | ui.lazy_type
@@ -94,11 +96,11 @@ function blocks.WindowActionButton(name, icon, uname)
     ---@type ui.IconSet
     local iconset
     if type(icon) == "string" then
-        iconset = spec.fill_icon_set {
+        iconset = utils.fill_icon_set {
             default = icon
         }
     else
-        iconset = spec.fill_icon_set(icon)
+        iconset = utils.fill_icon_set(icon)
     end
     return ElSpec.new {
         type = "sprite-button",
@@ -219,38 +221,82 @@ function blocks.ClosableWindow(name, window_label, movable)
     return base
 end
 
--- FIXME: it's broken :)
----Resolve a value, including any references (ref(...)) or NIL sentinels.
----@param value any
----@param unames { [string]: LuaGuiElement } | nil
----@return any, string
-local function resolve_value(value, unames)
-    if type(value) == "table" then
-        if value == NIL then return nil, tostring(nil) end
-        local mt = getmetatable(value)
-        if mt == ref_typeinfo then
-            if unames == nil then
-                error("Cannot resolve ref() at this point, because there is no context available. "
-                    .. "\nConsider putting this property in ElementSpec.x to defer resolution.")
-            end
-            ---@cast value ui.ref_type
-            return unames[value.uname]
-                or error("broken ref(...): no '" .. value.uname .. "' in context"),
-                "ref to '" .. value.uname .. "'"
-        elseif mt == lazy_typeinfo then
-            ---@cast value ui.lazy_type
-            local actual, actual_desc = resolve_value(value.fun(), unames)
-            return actual, "lazy: " .. actual_desc
-        else
-            local new_table = {}
-            for k, v in pairs(value) do
-                new_table[k] = resolve_value(v, unames)
-            end
-            return new_table, "table(" .. table_size(new_table) .. ")"
+---@class ui.build.options
+---@field unames {[string]: LuaGuiElement} | nil
+---@field stage integer
+
+---@alias ui.build._translate_type fun(value: any, ctx: ui.build.options): any
+---@type ui.build._translate_type
+local translate_type
+
+---@type { [string]: (fun(t: table, c: ui.build.options): any)}
+local translation_rules = {
+    ---@param t ui.ast.binop
+    ["ui.ast.binop"] = function(t, c)
+        local left = translate_type(t.left, c)
+        local right = translate_type(t.right, c)
+        if t.op == ".." then return left .. right end
+        if t.op == "+" then return left + right end
+        if t.op == "-" then return left - right end
+        if t.op == "*" then return left * right end
+        if t.op == "/" then return left / right end
+        if t.op == "%" then return left % right end
+        if t.op == "^" then return left ^ right end
+        error("unsupported binary operation " .. t.op)
+    end,
+    ---@param t ui.ast.unop
+    ["ui.ast.unop"] = function(t, c)
+        local target = translate_type(t.target, c)
+        if t.op == "-" then return -target end
+        error("unsupported binary operation " .. t.op)
+    end,
+    ---@param t ui.compiled.param
+    ["ui.compiled.param"] = function(t, c)
+        error("`types.param` only makes sense in a compilation context.")
+    end,
+    ---@param t ui.compiled.const
+    ["ui.compiled.const"] = function(t, c)
+        runtime.warn("`types.const` was used outside of a compilation context.")
+        return t.value
+    end,
+    ---@param t ui.compiled._static
+    ["ui.compiled._static"] = function(t, c)
+        error("`types._static` only makes sense in a compilation context. Also, don't use it manually :)")
+    end,
+    ---@param t ui.ref_type
+    ["ui.ref"] = function(t, c)
+        if c.unames == nil then
+            error("Cannot resolve ref() at this point, because there is no context available. "
+                .. "\nConsider putting this property in ElementSpec.x to defer resolution.")
         end
-    else
-        return value, tostring(value)
+        return c.unames[t.name]
+            or error("broken ref(...): no '" .. t.name .. "' in context")
+    end,
+    ---@param t ui.lazy_type
+    ["ui.lazy"] = function(t, c)
+        return t.resolve(c)
+    end,
+    ["_nil"] = function(t, c)
+        local out = {}
+        for k, v in pairs(t) do
+            out[translate_type(k, c)] = translate_type(v, c)
+        end
+        return out
+    end,
+}
+
+---@type ui.build._translate_type
+function translate_type(value, ctx)
+    if type(value) == "table" then
+        local mt = getmetatable(value)
+        local type = (mt and mt._type) or "_nil"
+        local action = translation_rules[type]
+        if not action then
+            error("no translation rule for type " .. type .. "...?")
+        end
+        return action(value, ctx)
     end
+    return value
 end
 
 ---@param elspec ui.ElementSpec
@@ -260,7 +306,7 @@ local function auto_name(elspec)
     local function inner(e)
         if not e.name then
             c = c + 1
-            if events.is_runtime() then
+            if runtime.is_runtime() then
                 e.name = "__runtime_unnamed_ui_element_" .. c
             else
                 e.name = "__unnamed_ui_element_" .. c
@@ -286,6 +332,7 @@ do
         local sub_contexts = {}
 
         local name_counter = 0
+        local hid = utils.get_handler_id()
 
         ---@param c ui.ElementSpec
         ---@param p LuaGuiElement
@@ -298,12 +345,12 @@ do
             local actualized = {}
             for k, v in pairs(c) do
                 if not spec.non_ui_add_names[k] then
-                    actualized[k] = resolve_value(v, nil)
+                    actualized[k] = translate_type(v, { stage = 1 })
                 end
             end
             if c.handlers then
                 actualized.tags = actualized.tags or {}
-                actualized.tags.handlers = c.handlers
+                actualized.tags[hid] = c.handlers
             end
             local real = p.add(actualized --[[@as LuaGuiElement.add_param]])
             if c.uname then
@@ -337,14 +384,14 @@ do
             -- log("[ui.components] decorate " .. tostring(c.name))
             if c.s then
                 for k, v in pairs(c.s) do
-                    local val, desc = resolve_value(v, _unames)
+                    local val, desc = translate_type(v, { stage = 2, unames = _unames })
                     -- log("  Style " .. tostring(k) .. " = " .. desc)
                     real.style[k] = val
                 end
             end
             if c.x then
                 for k, v in pairs(c.x) do
-                    local val, desc = resolve_value(v, _unames)
+                    local val, desc = translate_type(v, { stage = 2, unames = _unames })
                     -- log("  eXtra " .. tostring(k) .. " = " .. desc)
                     real[k] = val
                 end
@@ -374,6 +421,7 @@ do
     ---@param parent LuaGuiElement
     function build_dry(component, parent)
         local name_counter = 0
+        local hid = utils.get_handler_id()
 
         ---@param c ui.ElementSpec
         ---@param p LuaGuiElement
@@ -386,7 +434,7 @@ do
             end
             if c.handlers then
                 actualized.tags = actualized.tags or {}
-                actualized.tags.handlers = c.handlers
+                actualized.tags[hid] = c.handlers
             end
             local real = p.add(actualized --[[@as LuaGuiElement.add_param]])
             if c.s then

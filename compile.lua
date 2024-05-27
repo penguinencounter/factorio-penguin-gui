@@ -1,6 +1,7 @@
 local types = require 'types'
 local spec = require 'spec'
 local runtime = require 'runtime'
+local utils = require 'helpers'
 
 ---@class ui.compiled.translate_opt
 
@@ -76,7 +77,7 @@ translation_rules = {
         local builder_id = res_register(r, t.resolve)
         return translate_type(types._static(builder_id), m, r) .. '(options)'
     end,
-    ['ui.nil'] = function (t, m, r)
+    ['ui.nil'] = function(t, m, r)
         return "nil"
     end
 }
@@ -203,7 +204,8 @@ local function compile2(target, options, res)
 
     output = output .. "--[[ stage 1 init for " .. context_name .. " ]]\n"
     if opts._parent_context then
-        output = output .. "local " .. context_name .. " = setmetatable({}, { __index = " .. opts._parent_context .. " })\n"
+        output = output ..
+        "local " .. context_name .. " = setmetatable({}, { __index = " .. opts._parent_context .. " })\n"
     else
         output = output .. "local " .. context_name .. " = {}\n"
     end
@@ -228,12 +230,15 @@ local function compile2(target, options, res)
 
         if struct.handlers then
             direct.tags = direct.tags or {}
-            direct.tags.handlers = struct.handlers
+            local hid = utils.get_handler_id()
+            direct.tags[hid] = struct.handlers
         end
-        output = output .. "local " .. generate_name .. " = " .. parent_name .. ".add(" .. translate_type(direct, ctx, res) .. ")\n"
+        output = output ..
+        "local " .. generate_name .. " = " .. parent_name .. ".add(" .. translate_type(direct, ctx, res) .. ")\n"
 
         if struct.uname then
-            output = output .. context_name .. "[" .. translate_type(struct.uname, ctx, res) .. "] = " .. generate_name .. "\n"
+            output = output ..
+            context_name .. "[" .. translate_type(struct.uname, ctx, res) .. "] = " .. generate_name .. "\n"
         end
 
         for _, child in ipairs(struct.c or {}) do
@@ -277,14 +282,14 @@ local function compile2(target, options, res)
 
     update_tree(target)
 
-    
+
     for _, sub_context in ipairs(sub_contexts) do
         local options_overlay = setmetatable({
             _parent_context = context_name,
             _parent_varn = sub_context.parent_varn,
             log_debug = false,
             child = true
-        }, {__index = opts})
+        }, { __index = opts })
         local _, child_out = compile2(sub_context.spec, options_overlay, res)
         output = output .. child_out .. "\n"
     end

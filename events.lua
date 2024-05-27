@@ -1,4 +1,5 @@
 local runtime = require "runtime"
+local utils = require 'helpers'
 -- Stateless event handling based on flib's handler system.
 
 ---@type ui.Handler[]
@@ -45,13 +46,9 @@ local function register(func, name, strategy)
             error("Invalid strategy: " .. strategy)
         end
     end
+    log("registering handler: " .. namespaced)
     handlers[namespaced] = func
     return namespaced
-end
-
-
-local function freeze()
-    is_runtime = true
 end
 
 ---@alias ui.GUIEvent
@@ -94,14 +91,22 @@ local function Dispatcher(name)
         if not (event_data.element and event_data.element.valid) then return end
         local element = event_data.element
         ---@cast element -nil
-        local target = element.tags and element.tags.handlers and element.tags.handlers[name]
+        local hid = utils.get_handler_id()
+        local target = element.tags and element.tags[hid] and element.tags[hid][name]
         if not target then return end
         if type(target) == "function" then
             error(
                 "Somehow stored a function on LuaGuiElement.tags and didn't crash. Still invalid - try uie.reg(fn).")
         end
         local actual = handlers[target]
-        if not actual then error("Broken reference to handler: " .. tostring(target)) end
+        if not actual then
+            local candidates = {}
+            for k, v in pairs(handlers) do
+                candidates[#candidates + 1] = k
+            end
+            error("Broken reference to handler: " .. tostring(target) .. " - registered handlers: " ..
+                table.concat(candidates, ", "))
+        end
         actual(event_data)
     end
 end
@@ -121,7 +126,7 @@ do
     end
 end
 
-local eval_handler = register(function (event)
+local eval_handler = register(function(event)
     local element = event.element
     if not element then return end
     if not element.tags then return end
@@ -136,7 +141,7 @@ local eval_handler = register(function (event)
     if not ok then
         runtime.warn("Error running string-based action: " .. err)
     end
-end)
+end, "eval_handler")
 
 
 ---@class ui.ui_events_module

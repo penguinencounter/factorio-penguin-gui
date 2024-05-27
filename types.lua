@@ -105,6 +105,10 @@ local function mktypemeta(name)
                 target = t
             }, export.unop_type)
         end,
+        __len = function (t)
+            ---@diagnostic disable-next-line: missing-return
+            invalid "length"
+        end,
         __eq = function (t1, t2)
             ---@diagnostic disable-next-line: missing-return
             invalid "equals"
@@ -128,7 +132,6 @@ export.unop_type = mktypemeta("ui.ast.unop")
 export.ref_type = mktypemeta("ui.ref")
 export.lazy_type = mktypemeta("ui.lazy")
 export.param_type = mktypemeta("ui.compiled.param")
-export.code_type = mktypemeta("ui.compiled.code")
 export.const_type = mktypemeta("ui.compiled.const")
 export.internal_static_type = mktypemeta("ui.compiled._static")
 

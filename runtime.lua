@@ -43,7 +43,7 @@ local function warn(message)
     if settings.startup["penguin-gui-dev-mode"].value then
         if game then
             game.print("[WARNING] " .. message, {
-                sound_path = "__core__/sound/cannot-build.ogg",
+                sound_path = "utility/cannot_build",
                 game_state = false,
                 color = { r = 1, g = 0.8, b = 0 }
             })
